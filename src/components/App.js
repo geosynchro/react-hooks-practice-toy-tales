@@ -32,6 +32,12 @@ function App() {
     .then(resToy =>setToysList([...toys, resToy ]))
   }
 
+  function handleDeleteToy(id){
+    fetch(URL + `/${id}`, {method:"DELETE"})
+    const newToyArr = toys.filter(toy => toy.id !== id)
+    setToysList(newToyArr)
+  }
+
   return (
     <>
       <Header />
@@ -39,7 +45,7 @@ function App() {
       <div className="buttonContainer">
         <button onClick={handleClick}>Add a Toy</button>
       </div>
-      <ToyContainer toys={toys}/>
+      <ToyContainer toys={toys} onDeleteToy={handleDeleteToy}/>
     </>
   );
 }

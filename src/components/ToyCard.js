@@ -1,6 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 
-function ToyCard({id, image, name, likes}) {
+function ToyCard({id, image, name, likes, onDeleteToy}) {
+  const[likeNum, setLikeNum]= useState({likes})
+
+  function addLikes(){
+    
+    setLikeNum(likes+1)
+  }
+  
   return (
     <div className="card">
       <h2>{name}</h2>
@@ -10,8 +17,8 @@ function ToyCard({id, image, name, likes}) {
         className="toy-avatar"
       />
       <p>{likes} Likes </p>
-      <button className="like-btn">Like{"<3"}</button>
-      <button className="del-btn">Donate to GoodWill</button>
+      <button onClick={addLikes}className="like-btn">Like{"<3"}</button>
+      <button onClick={() => onDeleteToy(id)} className="del-btn">Donate to GoodWill</button>
     </div>
   );
 }
